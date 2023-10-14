@@ -12,7 +12,7 @@ public abstract class PointsCommand implements NamedExecutor {
     private final String name;
     private final CommandManager.CommandAliases aliases;
 
-    public PointsCommand(String name, CommandManager.CommandAliases aliases) {
+    protected PointsCommand(String name, CommandManager.CommandAliases aliases) {
         this.name = name;
         this.aliases = aliases;
     }

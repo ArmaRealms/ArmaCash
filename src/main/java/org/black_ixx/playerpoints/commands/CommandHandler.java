@@ -60,7 +60,7 @@ public abstract class CommandHandler implements TabExecutor, NamedExecutor {
      *
      * @param plugin - Root plugin.
      */
-    public CommandHandler(PlayerPoints plugin, String cmd, CommandManager.CommandAliases aliases) {
+    protected CommandHandler(PlayerPoints plugin, String cmd, CommandManager.CommandAliases aliases) {
         this.plugin = plugin;
         this.cmd = cmd;
         this.aliases = aliases;

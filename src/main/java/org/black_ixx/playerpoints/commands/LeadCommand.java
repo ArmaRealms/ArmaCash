@@ -1,12 +1,6 @@
 package org.black_ixx.playerpoints.commands;
 
 import dev.rosewood.rosegarden.utils.StringPlaceholders;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 import org.black_ixx.playerpoints.PlayerPoints;
 import org.black_ixx.playerpoints.manager.CommandManager;
 import org.black_ixx.playerpoints.manager.ConfigurationManager.Setting;
@@ -18,6 +12,13 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.permissions.Permissible;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class LeadCommand extends CommandHandler {
 
@@ -59,19 +60,21 @@ public class LeadCommand extends CommandHandler {
                 numPages = 0;
             }
 
-            localeManager.sendMessage(sender, "command-lead-title", StringPlaceholders.builder("page", currentPage + 1)
-                    .addPlaceholder("pages", numPages).build());
+            localeManager.sendMessage(sender, "command-lead-title",
+                    StringPlaceholders.builder("page", currentPage + 1)
+                            .addPlaceholder("pages", numPages).build());
 
             // Page through
             for (int i = 0; i < listedPlayers.size(); i++) {
                 int position = currentPage * limit + i + 1;
                 SortedPlayer player = listedPlayers.get(i);
 
-                localeManager.sendSimpleMessage(sender, "command-lead-entry", StringPlaceholders.builder("position", position)
-                        .addPlaceholder("player", player.getUsername())
-                        .addPlaceholder("amount", PointsUtils.formatPoints(player.getPoints()))
-                        .addPlaceholder("currency", localeManager.getCurrencyName(player.getPoints()))
-                        .build());
+                localeManager.sendSimpleMessage(sender, "command-lead-entry",
+                        StringPlaceholders.builder("position", String.format("%2d", position))
+                                .addPlaceholder("player", player.getUsername())
+                                .addPlaceholder("amount", PointsUtils.formatPoints(player.getPoints()))
+                                .addPlaceholder("currency", localeManager.getCurrencyName(player.getPoints()))
+                                .build());
             }
         });
     }
