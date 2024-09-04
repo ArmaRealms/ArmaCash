@@ -3,12 +3,11 @@ package org.black_ixx.playerpoints.commands;
 import dev.rosewood.rosegarden.utils.StringPlaceholders;
 import org.black_ixx.playerpoints.PlayerPoints;
 import org.black_ixx.playerpoints.manager.CommandManager;
-import org.black_ixx.playerpoints.manager.ConfigurationManager.Setting;
 import org.black_ixx.playerpoints.manager.DataManager;
 import org.black_ixx.playerpoints.manager.LocaleManager;
 import org.black_ixx.playerpoints.models.SortedPlayer;
+import org.black_ixx.playerpoints.setting.SettingKey;
 import org.black_ixx.playerpoints.util.PointsUtils;
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.permissions.Permissible;
@@ -34,9 +33,9 @@ public class LeadCommand extends CommandHandler {
     @Override
     public void noArgs(CommandSender sender) {
         LocaleManager localeManager = this.plugin.getManager(LocaleManager.class);
-        int limit = Setting.LEADERBOARD_PER_PAGE.getInt();
+        int limit = SettingKey.LEADERBOARD_PER_PAGE.get();
 
-        Bukkit.getScheduler().runTaskAsynchronously(this.plugin, () -> {
+        this.plugin.getScheduler().runTaskAsync(() -> {
             List<SortedPlayer> leaders = this.plugin.getManager(DataManager.class).getTopSortedPoints(null);
             int currentPage = this.pageMap.getOrDefault(sender.getName(), 0);
             int numPages = (int) Math.ceil(leaders.size() / (double) limit);
@@ -50,31 +49,29 @@ public class LeadCommand extends CommandHandler {
                 this.pageMap.put(sender.getName(), currentPage);
             }
 
-            List<SortedPlayer> listedPlayers = leaders.stream()
-                    .skip((long) currentPage * limit)
-                    .limit(limit)
-                    .collect(Collectors.toList());
-
             if (leaders.isEmpty()) {
                 currentPage = 0;
                 numPages = 0;
             }
 
-            localeManager.sendMessage(sender, "command-lead-title",
-                    StringPlaceholders.builder("page", currentPage + 1)
-                            .addPlaceholder("pages", numPages).build());
+            List<SortedPlayer> listedPlayers = leaders.stream()
+                    .skip((long) currentPage * limit)
+                    .limit(limit)
+                    .collect(Collectors.toList());
+
+            localeManager.sendMessage(sender, "command-lead-title", StringPlaceholders.builder("page", currentPage + 1)
+                    .add("pages", numPages).build());
 
             // Page through
             for (int i = 0; i < listedPlayers.size(); i++) {
                 int position = currentPage * limit + i + 1;
                 SortedPlayer player = listedPlayers.get(i);
 
-                localeManager.sendSimpleMessage(sender, "command-lead-entry",
-                        StringPlaceholders.builder("position", String.format("%2d", position))
-                                .addPlaceholder("player", player.getUsername())
-                                .addPlaceholder("amount", PointsUtils.formatPoints(player.getPoints()))
-                                .addPlaceholder("currency", localeManager.getCurrencyName(player.getPoints()))
-                                .build());
+                localeManager.sendSimpleMessage(sender, "command-lead-entry", StringPlaceholders.builder("position", position)
+                        .add("player", player.getUsername())
+                        .add("amount", PointsUtils.formatPoints(player.getPoints()))
+                        .add("currency", localeManager.getCurrencyName(player.getPoints()))
+                        .build());
             }
         });
     }

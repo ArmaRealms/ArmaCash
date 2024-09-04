@@ -3,11 +3,9 @@ package org.black_ixx.playerpoints.commands;
 import dev.rosewood.rosegarden.utils.StringPlaceholders;
 import java.util.Collections;
 import java.util.List;
-import java.util.UUID;
 import org.black_ixx.playerpoints.PlayerPoints;
 import org.black_ixx.playerpoints.manager.CommandManager;
 import org.black_ixx.playerpoints.manager.LocaleManager;
-import org.black_ixx.playerpoints.models.Tuple;
 import org.black_ixx.playerpoints.util.PointsUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -27,9 +25,9 @@ public class GiveCommand extends PointsCommand {
             return;
         }
 
-        PointsUtils.getPlayerByName(args[0]).thenAccept(player -> {
+        PointsUtils.getPlayerByName(args[0], player -> {
             if (player == null) {
-                localeManager.sendMessage(sender, "unknown-player", StringPlaceholders.single("player", args[0]));
+                localeManager.sendMessage(sender, "unknown-player", StringPlaceholders.of("player", args[0]));
                 return;
             }
 
@@ -51,14 +49,14 @@ public class GiveCommand extends PointsCommand {
                 Player onlinePlayer = Bukkit.getPlayer(player.getFirst());
                 if (onlinePlayer != null) {
                     localeManager.sendMessage(onlinePlayer, "command-give-received", StringPlaceholders.builder("amount", PointsUtils.formatPoints(amount))
-                            .addPlaceholder("currency", localeManager.getCurrencyName(amount))
+                            .add("currency", localeManager.getCurrencyName(amount))
                             .build());
                 }
 
                 // Send message to sender
                 localeManager.sendMessage(sender, "command-give-success", StringPlaceholders.builder("amount", PointsUtils.formatPoints(amount))
-                        .addPlaceholder("currency", localeManager.getCurrencyName(amount))
-                        .addPlaceholder("player", player.getSecond())
+                        .add("currency", localeManager.getCurrencyName(amount))
+                        .add("player", player.getSecond())
                         .build());
             }
         });
