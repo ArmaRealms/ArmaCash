@@ -1,16 +1,6 @@
 package org.black_ixx.playerpoints.commands;
 
 import dev.rosewood.rosegarden.hook.PlaceholderAPIHook;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
 import org.black_ixx.playerpoints.PlayerPoints;
 import org.black_ixx.playerpoints.manager.CommandManager;
 import org.black_ixx.playerpoints.manager.LocaleManager;
@@ -26,6 +16,17 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.minecart.CommandMinecart;
 import org.bukkit.permissions.Permissible;
 import org.bukkit.util.StringUtil;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Abstract class to handle the majority of the logic dealing with commands.
@@ -220,7 +221,7 @@ public abstract class CommandHandler implements TabExecutor, NamedExecutor {
      * Method that is called on a CommandHandler if there is no additional
      * arguments given that specify a specific command.
      *
-     * @param sender  - Sender of the command.
+     * @param sender - Sender of the command.
      */
     public abstract void noArgs(CommandSender sender);
 
@@ -229,8 +230,8 @@ public abstract class CommandHandler implements TabExecutor, NamedExecutor {
      * Useful for when expecting a player name parameter on a root command
      * handler command.
      *
-     * @param sender  - Sender of the command.
-     * @param args    - Arguments.
+     * @param sender - Sender of the command.
+     * @param args   - Arguments.
      */
     public abstract void unknownCommand(CommandSender sender, String[] args);
 

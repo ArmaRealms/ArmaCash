@@ -3,11 +3,6 @@ package org.black_ixx.playerpoints.manager;
 import dev.rosewood.rosegarden.RosePlugin;
 import dev.rosewood.rosegarden.manager.Manager;
 import dev.rosewood.rosegarden.scheduler.task.ScheduledTask;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 import org.black_ixx.playerpoints.models.SortedPlayer;
 import org.black_ixx.playerpoints.setting.SettingKey;
 import org.bukkit.Bukkit;
@@ -15,10 +10,16 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
 public class LeaderboardManager extends Manager implements Listener {
 
-    private ScheduledTask refreshTask;
     private final DataManager dataManager;
+    private ScheduledTask refreshTask;
     private long refreshInterval;
 
     private List<SortedPlayer> leaderboard;

@@ -1,10 +1,6 @@
 package org.black_ixx.playerpoints.commands;
 
 import dev.rosewood.rosegarden.utils.StringPlaceholders;
-import java.util.Collections;
-import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
 import org.black_ixx.playerpoints.PlayerPoints;
 import org.black_ixx.playerpoints.manager.CommandManager;
 import org.black_ixx.playerpoints.manager.DataManager;
@@ -13,6 +9,11 @@ import org.black_ixx.playerpoints.util.PointsUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class GiveAllCommand extends PointsCommand {
 

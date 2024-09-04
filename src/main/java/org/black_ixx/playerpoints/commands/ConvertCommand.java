@@ -1,18 +1,18 @@
 package org.black_ixx.playerpoints.commands;
 
 import dev.rosewood.rosegarden.utils.StringPlaceholders;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
 import org.black_ixx.playerpoints.PlayerPoints;
 import org.black_ixx.playerpoints.conversion.CurrencyPlugin;
 import org.black_ixx.playerpoints.manager.CommandManager;
 import org.black_ixx.playerpoints.manager.ConversionManager;
 import org.black_ixx.playerpoints.manager.LocaleManager;
-import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.util.StringUtil;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ConvertCommand extends PointsCommand {
 

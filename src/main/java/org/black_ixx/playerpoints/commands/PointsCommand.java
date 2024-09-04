@@ -1,11 +1,12 @@
 package org.black_ixx.playerpoints.commands;
 
-import java.util.Collections;
-import java.util.List;
 import org.black_ixx.playerpoints.PlayerPoints;
 import org.black_ixx.playerpoints.manager.CommandManager;
 import org.bukkit.command.CommandSender;
 import org.bukkit.permissions.Permissible;
+
+import java.util.Collections;
+import java.util.List;
 
 public abstract class PointsCommand implements NamedExecutor {
 
@@ -22,7 +23,7 @@ public abstract class PointsCommand implements NamedExecutor {
      *
      * @param plugin PlayerPoints instance.
      * @param sender Sender of the command.
-     * @param args Command arguments.
+     * @param args   Command arguments.
      */
     public abstract void execute(PlayerPoints plugin, CommandSender sender, String[] args);
 
@@ -31,7 +32,7 @@ public abstract class PointsCommand implements NamedExecutor {
      *
      * @param plugin PlayerPoints instance.
      * @param sender Sender of the command.
-     * @param args Command arguments.
+     * @param args   Command arguments.
      */
     public abstract List<String> tabComplete(PlayerPoints plugin, CommandSender sender, String[] args);
 

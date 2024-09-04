@@ -7,6 +7,12 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import org.black_ixx.playerpoints.PlayerPoints;
+import org.black_ixx.playerpoints.manager.DataManager;
+import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
+import org.bukkit.entity.Player;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -16,11 +22,6 @@ import java.net.URL;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
-import org.black_ixx.playerpoints.PlayerPoints;
-import org.black_ixx.playerpoints.manager.DataManager;
-import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
-import org.bukkit.entity.Player;
 
 public final class NameFetcher {
 
@@ -96,6 +97,14 @@ public final class NameFetcher {
 
     private static class UUIDTypeAdapter extends TypeAdapter<UUID> {
 
+        public static String fromUUID(UUID value) {
+            return value.toString().replace("-", "");
+        }
+
+        public static UUID fromString(String input) {
+            return UUID.fromString(input.replaceFirst("(\\w{8})(\\w{4})(\\w{4})(\\w{4})(\\w{12})", "$1-$2-$3-$4-$5"));
+        }
+
         @Override
         public void write(JsonWriter out, UUID value) throws IOException {
             out.value(fromUUID(value));
@@ -104,14 +113,6 @@ public final class NameFetcher {
         @Override
         public UUID read(JsonReader in) throws IOException {
             return fromString(in.nextString());
-        }
-
-        public static String fromUUID(UUID value) {
-            return value.toString().replace("-", "");
-        }
-
-        public static UUID fromString(String input) {
-            return UUID.fromString(input.replaceFirst("(\\w{8})(\\w{4})(\\w{4})(\\w{4})(\\w{12})", "$1-$2-$3-$4-$5"));
         }
 
     }

@@ -16,6 +16,13 @@ public enum CurrencyPlugin {
         this.converterClass = converterClass;
     }
 
+    public static CurrencyPlugin get(String name) {
+        for (CurrencyPlugin currencyPlugin : values())
+            if (currencyPlugin.name().equalsIgnoreCase(name))
+                return currencyPlugin;
+        return null;
+    }
+
     public CurrencyConverter getConverter() {
         try {
             return this.converterClass.getConstructor(RosePlugin.class).newInstance(PlayerPoints.getInstance());
@@ -23,13 +30,6 @@ public enum CurrencyPlugin {
             e.printStackTrace();
             return null;
         }
-    }
-
-    public static CurrencyPlugin get(String name) {
-        for (CurrencyPlugin currencyPlugin : values())
-            if (currencyPlugin.name().equalsIgnoreCase(name))
-                return currencyPlugin;
-        return null;
     }
 
 }

@@ -3,8 +3,6 @@ package org.black_ixx.playerpoints;
 import dev.rosewood.rosegarden.RosePlugin;
 import dev.rosewood.rosegarden.config.RoseSetting;
 import dev.rosewood.rosegarden.manager.Manager;
-import java.util.Arrays;
-import java.util.List;
 import me.lokka30.treasury.api.common.service.ServiceRegistry;
 import me.lokka30.treasury.api.economy.EconomyProvider;
 import net.milkbowl.vault.economy.Economy;
@@ -22,6 +20,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.ServicePriority;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Main plugin class for PlayerPoints.
  */
@@ -35,6 +36,10 @@ public class PlayerPoints extends RosePlugin {
     public PlayerPoints() {
         super(80745, 10234, DataManager.class, LocaleManager.class, null);
         instance = this;
+    }
+
+    public static PlayerPoints getInstance() {
+        return instance;
     }
 
     @Override
@@ -140,7 +145,7 @@ public class PlayerPoints extends RosePlugin {
 
     @Override
     protected String[] getRoseConfigHeader() {
-        return new String[] {
+        return new String[]{
                 "__________ __                           __________       __        __",
                 "\\______   \\  | _____  ___ __  __________\\______   \\____ |__| _____/  |_  ______",
                 " |     ___/  | \\__  \\<   |  |/ __ \\_  __ \\     ___/  _ \\|  |/    \\   __\\/  ___/",
@@ -148,10 +153,6 @@ public class PlayerPoints extends RosePlugin {
                 " |____|   |____(____  / ____|\\___  >__|  |____|   \\____/|__|___|  /__| /____  >",
                 "                    \\/\\/         \\/                             \\/          \\/"
         };
-    }
-
-    public static PlayerPoints getInstance() {
-        return instance;
     }
 
     /**

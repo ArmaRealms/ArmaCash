@@ -1,6 +1,16 @@
 package org.black_ixx.playerpoints.util;
 
 import dev.rosewood.rosegarden.RosePlugin;
+import org.black_ixx.playerpoints.PlayerPoints;
+import org.black_ixx.playerpoints.manager.DataManager;
+import org.black_ixx.playerpoints.manager.LocaleManager;
+import org.black_ixx.playerpoints.models.Tuple;
+import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
+import org.bukkit.entity.Player;
+import org.bukkit.metadata.MetadataValue;
+import org.bukkit.util.StringUtil;
+
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
@@ -13,21 +23,12 @@ import java.util.UUID;
 import java.util.function.Consumer;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import org.black_ixx.playerpoints.PlayerPoints;
-import org.black_ixx.playerpoints.manager.DataManager;
-import org.black_ixx.playerpoints.manager.LocaleManager;
-import org.black_ixx.playerpoints.models.Tuple;
-import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
-import org.bukkit.entity.Player;
-import org.bukkit.metadata.MetadataValue;
-import org.bukkit.util.StringUtil;
 
 public final class PointsUtils {
 
+    private static final NavigableMap<Long, String> suffixes = new TreeMap<>();
     private static NumberFormat formatter = NumberFormat.getInstance();
     private static String decimal;
-    private static final NavigableMap<Long, String> suffixes = new TreeMap<>();
 
     /**
      * Formats a number from 1100 to 1,100
@@ -98,7 +99,7 @@ public final class PointsUtils {
     /**
      * Gets an OfflinePlayer by name, prioritizing online players.
      *
-     * @param name The name of the player
+     * @param name     The name of the player
      * @param callback A callback to run with a tuple of the player's UUID and name, or null if not found
      */
     @SuppressWarnings("deprecation")

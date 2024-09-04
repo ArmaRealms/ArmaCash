@@ -1,9 +1,5 @@
 package org.black_ixx.playerpoints;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
 import org.black_ixx.playerpoints.event.PlayerPointsChangeEvent;
 import org.black_ixx.playerpoints.event.PlayerPointsResetEvent;
 import org.black_ixx.playerpoints.manager.DataManager;
@@ -12,10 +8,15 @@ import org.black_ixx.playerpoints.util.PointsUtils;
 import org.bukkit.Bukkit;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
+
 /**
  * The API for the PlayerPoints plugin.
  * Used to manipulate a player's points balance.
- *
+ * <p>
  * Note: This API does not send any messages and changes will be saved to the database automatically.
  */
 public class PlayerPointsAPI {
@@ -30,7 +31,7 @@ public class PlayerPointsAPI {
      * Gives a player a specified amount of points
      *
      * @param playerId The player to give points to
-     * @param amount The amount of points to give
+     * @param amount   The amount of points to give
      * @return true if the transaction was successful, false otherwise
      */
     public boolean give(@NotNull UUID playerId, int amount) {
@@ -48,7 +49,7 @@ public class PlayerPointsAPI {
      * Gives a collection of players a specified amount of points
      *
      * @param playerIds The players to give points to
-     * @param amount The amount of points to give
+     * @param amount    The amount of points to give
      * @return true if any transaction was successful, false otherwise
      */
     @NotNull
@@ -66,7 +67,7 @@ public class PlayerPointsAPI {
      * Takes a specified amount of points from a player
      *
      * @param playerId The player to take points from
-     * @param amount The amount of points to take
+     * @param amount   The amount of points to take
      * @return true if the transaction was successful, false otherwise
      */
     public boolean take(@NotNull UUID playerId, int amount) {
@@ -138,7 +139,7 @@ public class PlayerPointsAPI {
      * Sets a player's points to a specified amount
      *
      * @param playerId The player to set the points of
-     * @param amount The amount of points to set to
+     * @param amount   The amount of points to set to
      * @return true if the transaction was successful, false otherwise
      */
     public boolean set(@NotNull UUID playerId, int amount) {
