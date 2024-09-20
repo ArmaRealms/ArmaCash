@@ -1,8 +1,6 @@
 package org.black_ixx.playerpoints.commands;
 
 import dev.rosewood.rosegarden.utils.StringPlaceholders;
-import java.util.Collections;
-import java.util.List;
 import org.black_ixx.playerpoints.PlayerPoints;
 import org.black_ixx.playerpoints.manager.CommandManager;
 import org.black_ixx.playerpoints.manager.LocaleManager;
@@ -10,6 +8,9 @@ import org.black_ixx.playerpoints.util.PointsUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import java.util.Collections;
+import java.util.List;
 
 public class GiveCommand extends PointsCommand {
 
@@ -28,10 +29,7 @@ public class GiveCommand extends PointsCommand {
         }
 
         // Check if -s (silent) flag is present
-        boolean silent = false;
-        if (args.length > 2 && args[2].equalsIgnoreCase("-s")) {
-            silent = true;
-        }
+        boolean silent = args.length > 2 && args[2].equalsIgnoreCase("-s");
 
         PointsUtils.getPlayerByName(args[0], player -> {
             if (player == null) {

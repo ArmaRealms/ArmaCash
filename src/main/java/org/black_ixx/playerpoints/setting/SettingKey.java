@@ -3,11 +3,15 @@ package org.black_ixx.playerpoints.setting;
 import dev.rosewood.rosegarden.config.CommentedConfigurationSection;
 import dev.rosewood.rosegarden.config.RoseSetting;
 import dev.rosewood.rosegarden.config.RoseSettingSerializer;
+import org.black_ixx.playerpoints.PlayerPoints;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import org.black_ixx.playerpoints.PlayerPoints;
-import static dev.rosewood.rosegarden.config.RoseSettingSerializers.*;
+
+import static dev.rosewood.rosegarden.config.RoseSettingSerializers.BOOLEAN;
+import static dev.rosewood.rosegarden.config.RoseSettingSerializers.INTEGER;
+import static dev.rosewood.rosegarden.config.RoseSettingSerializers.STRING;
 
 public class SettingKey {
 
@@ -33,6 +37,9 @@ public class SettingKey {
     public static final RoseSetting<Boolean> LEGACY_DATABASE_MODE = create("legacy-database-mode.enabled", BOOLEAN, false, "Should we use legacy database mode?");
     public static final RoseSetting<String> LEGACY_DATABASE_NAME = create("legacy-database-mode.table-name", STRING, "playerpoints", "The name of the legacy database table");
 
+    private SettingKey() {
+    }
+
     private static <T> RoseSetting<T> create(String key, RoseSettingSerializer<T> serializer, T defaultValue, String... comments) {
         RoseSetting<T> setting = RoseSetting.backed(PlayerPoints.getInstance(), key, serializer, defaultValue, comments);
         KEYS.add(setting);
@@ -48,7 +55,5 @@ public class SettingKey {
     public static List<RoseSetting<?>> getKeys() {
         return Collections.unmodifiableList(KEYS);
     }
-
-    private SettingKey() {}
 
 }

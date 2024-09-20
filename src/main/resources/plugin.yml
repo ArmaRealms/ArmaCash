@@ -1,20 +1,20 @@
 name: PlayerPoints
 version: '@version@'
-authors: [Esophose, Black_ixx]
+authors: [ Esophose, Black_ixx ]
 website: 'https://www.spigotmc.org/resources/playerpoints.80745/'
 description: A point based currency system
 main: org.black_ixx.playerpoints.PlayerPoints
 api-version: '1.13'
 load: STARTUP
-softdepend: [Vault, Treasury, Votifier, PlaceholderAPI, TokenManager, GamePoints, NexEngine]
-loadbefore: [mcMMO]
+softdepend: [ Vault, Treasury, Votifier, PlaceholderAPI, TokenManager, GamePoints, NexEngine ]
+loadbefore: [ mcMMO ]
 folia-supported: true
 libraries:
   - 'com.mysql:mysql-connector-j:9.0.0'
   - 'org.xerial:sqlite-jdbc:3.46.0.0'
 commands:
   points:
-    aliases: [p]
+    aliases: [ cash ]
     description: Root command for PlayerPoints
 permissions:
   playerpoints.*:

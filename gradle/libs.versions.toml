@@ -1,0 +1,23 @@
+[versions]
+rosegarden = "1.4.2"
+spigot = "1.21-R0.1-SNAPSHOT"
+vault = "1.7.3"
+treasury = "1.2.1"
+votifier = "2.7.2"
+placeholderapi = "2.11.6"
+annotations = "24.0.1"
+tokenmanager = "3.2.5"
+gamepoints = "1.3.1"
+nexengine = "2.2.0"
+
+[libraries]
+rosewood-rosegarden = { module = "dev.rosewood:rosegarden", version.ref = "rosegarden" }
+spigot-api = { module = "org.spigotmc:spigot-api", version.ref = "spigot" }
+vault = { module = "com.github.milkbowl:vault", version.ref = "vault" }
+treasury-api = { module = "me.lokka30:treasury-api", version.ref = "treasury" }
+votifier = { module = "com.vexsoftware:votifier", version.ref = "votifier" }
+placeholderapi = { module = "me.clip:placeholderapi", version.ref = "placeholderapi" }
+annotations = { module = "org.jetbrains:annotations", version.ref = "annotations" }
+tokenmanager = { module = "me.realized:tokenmanager", version.ref = "tokenmanager" }
+gamepoints = { module = "su.nightexpress:gamepoints", version.ref = "gamepoints" }
+nexengine = { module = "su.nexmedia:nexengine", version.ref = "nexengine" }
