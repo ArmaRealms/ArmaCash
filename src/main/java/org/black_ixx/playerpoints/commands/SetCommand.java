@@ -27,10 +27,7 @@ public class SetCommand extends PointsCommand {
         }
 
         // Check if -s (silent) flag is present
-        boolean silent = false;
-        if (args.length > 2 && args[2].equalsIgnoreCase("-s")) {
-            silent = true;
-        }
+        boolean silent = args.length > 2 && args[2].equalsIgnoreCase("-s");
 
         PointsUtils.getPlayerByName(args[0], player -> {
             if (player == null) {
